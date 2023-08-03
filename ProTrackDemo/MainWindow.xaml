@@ -35,7 +35,8 @@
                              Height="50"
                              Foreground="White"
                              FontSize="14"
-                             Style="{StaticResource MenuButtonTheme}"/>
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding NavigateToHomeCommand}"/>
 
                 <RadioButton Content="Track"
                              Height="50"
@@ -58,6 +59,11 @@
                      HorizontalAlignment="Left"
                      Margin="10"
                      Style="{StaticResource ModernTextBox}"/>
+
+            <ContentControl Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="10"
+                            Content="{Binding NavigationService.CurrentViewModel}"/>
         </Grid>
     </Border>
     

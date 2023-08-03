@@ -2,13 +2,21 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:ProTrackDemo"
-             StartupUri="MainWindow.xaml">
+             xmlns:viewModel="clr-namespace:ProTrackDemo.MVVM.ViewModels"
+             xmlns:view="clr-namespace:ProTrackDemo.MVVM.Views"
+             >
     <Application.Resources>
          <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Theme/MenuButtonTheme.xaml"/>
                 <ResourceDictionary Source="Theme/MenuTextBoxTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
+                <view:HomeView/>
+            </DataTemplate>
         </ResourceDictionary>
+
+        
     </Application.Resources>
 </Application>
