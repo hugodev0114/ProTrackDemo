@@ -19,7 +19,11 @@
             <DataTemplate DataType="{x:Type viewModel:RegisterTrainingViewModel}">
                 <view:RegisterTrainingView/>
             </DataTemplate>
-             
+
+            <DataTemplate DataType="{x:Type viewModel:TrackTrainingViewModel}">
+                <view:TrackTrainingView/>
+            </DataTemplate>
+
         </ResourceDictionary>
 
         

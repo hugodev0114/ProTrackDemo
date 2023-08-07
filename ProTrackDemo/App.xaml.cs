@@ -31,6 +31,7 @@ namespace ProTrackDemo
             services.AddSingleton<MainViewModel>();
             services.AddSingleton<HomeViewModel>();
             services.AddSingleton<RegisterTrainingViewModel>();
+            services.AddSingleton<TrackTrainingViewModel>();
             services.AddSingleton<INavigationService, NavigationService>();
 
             services.AddSingleton<Func<Type, ViewModel>>(ServiceProvider => viewModelType => (ViewModel)ServiceProvider.GetRequiredService(viewModelType));

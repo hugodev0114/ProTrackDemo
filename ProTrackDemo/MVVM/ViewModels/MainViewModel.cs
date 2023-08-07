@@ -24,12 +24,15 @@ namespace ProTrackDemo.MVVM.ViewModels
 
         public RelayCommand NavigateToHomeCommand { get; set; }
         public RelayCommand NavigateToRegisterCommand { get; set; }
+        public RelayCommand NavigateToTrackCommand { get; set; }
 
         public MainViewModel(INavigationService navigation)
         {
             NavigationService = navigation;
             NavigateToHomeCommand = new RelayCommand(_=> { return true; }, parameter => { NavigationService.NavigateTo<HomeViewModel>(); });
+            NavigateToTrackCommand = new RelayCommand(_ => { return true; }, parameter => { NavigationService.NavigateTo<TrackTrainingViewModel>(); });
             NavigateToRegisterCommand = new RelayCommand(_ => { return true; }, parameter => { NavigationService.NavigateTo<RegisterTrainingViewModel>(); });
+
         }
     }
 }
