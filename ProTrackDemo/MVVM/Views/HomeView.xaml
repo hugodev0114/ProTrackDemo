@@ -7,51 +7,18 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel>
-        <TextBlock Text="Home"
-                   Foreground="White"
-                   FontSize="28"
-                   HorizontalAlignment="Left"
-                   Margin="0,0,0,20"/>
-
-        <StackPanel Orientation="Horizontal">
-            <Border Width="400"
-                    Height="200"
-                    Background="PaleGreen">
-
-                
-
-                <Border.Clip>
-                    <RectangleGeometry RadiusX="10"
-                                       RadiusY="10"
-                                       Rect="0,0,400,200"/>
-                </Border.Clip>
 
 
-                <TextBlock Text="Register Training"
-                                Foreground="Black"
-                                FontSize="30"
-                                VerticalAlignment="Center"
-                                HorizontalAlignment="Center"/>
-            </Border>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-            <Border Width="200"
-                    Height="200"
-                    Margin="40"
-                    Background="AntiqueWhite">
+            <Button Content="Register Training" Grid.Column="0" Margin="3" Command="{Binding NavigateToRegisterCommand}"/>
+            <Button Content="Track Training" Grid.Column="1" Margin="3" />
 
-                <Border.Clip>
-                    <RectangleGeometry RadiusX="10"
-                                       RadiusY="10"
-                                       Rect="0,0,200,200"/>
-                </Border.Clip>
-
-                <TextBlock Text="Track Training"
-                                Foreground="Black"
-                                FontSize="30"
-                                VerticalAlignment="Center"
-                                HorizontalAlignment="Center"/>
-            </Border>
-        </StackPanel>
+        </Grid>
 
     </StackPanel>
 </UserControl>
