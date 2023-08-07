@@ -1,5 +1,4 @@
-﻿using ProTrackDemo.MVVM.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,14 +16,13 @@ using System.Windows.Shapes;
 namespace ProTrackDemo.MVVM.Views
 {
     /// <summary>
-    /// Logique d'interaction pour TrackTrainingView.xaml
+    /// Logique d'interaction pour TrainingView.xaml
     /// </summary>
-    public partial class TrackTrainingView : UserControl
+    public partial class TrainingView : UserControl
     {
-        public TrackTrainingView()
+        public TrainingView()
         {
             InitializeComponent();
-            DataContext = new TrackTrainingViewModel();
         }
     }
 }

@@ -4,8 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ProTrackDemo.MVVM.Views"
+             xmlns:viewmodels="clr-namespace:ProTrackDemo.MVVM.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <viewmodels:TrackTrainingViewModel/>
+    </UserControl.DataContext>
     <StackPanel>
 
 
@@ -15,13 +19,30 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
             <TextBlock Grid.Column="0" Text="Nom de l'entraînement : " Margin="3"/>
 
-            <ComboBox Grid.Column="1">
-                <ComboBoxItem Content="Entraînement Upper 1"/>
-                <ComboBoxItem Content="Entraînement Upper 2"/>
-                <ComboBoxItem Content="Entraînement Lower 3"/>
+            <ComboBox Grid.Column="1"
+                      ItemsSource="{Binding ComboBoxItems}" 
+                      SelectedItem="{Binding SelectedItem}"
+                      DisplayMemberPath="Name">
+                
             </ComboBox>
+
+            <ContentControl Grid.Row="1" Content="{Binding TrainingViewModel}">
+                <ContentControl.Resources>
+                    <!-- DataTemplate pour TrackTrainingView -->
+                    <DataTemplate DataType="{x:Type viewmodels:TrainingViewModel}">
+                        <local:TrainingView />
+                    </DataTemplate>
+
+                    <!-- Ajoutez d'autres DataTemplates pour chaque vue spécifique -->
+                </ContentControl.Resources>
+            </ContentControl>
 
         </Grid>
 

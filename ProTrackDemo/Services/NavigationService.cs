@@ -18,7 +18,7 @@ namespace ProTrackDemo.Services
             private set
             {
                 _currentViewModel = value;
-                OnPropertyChanged(nameof(CurrentViewModel));
+                OnPropertyChanged(nameof(CurrentViewModel));    
             }
         }
 
