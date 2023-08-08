@@ -53,24 +53,54 @@ namespace ProTrackDemo.MVVM.ViewModels
 
         public TrackTrainingViewModel()
         {
-            
+
             ComboBoxItems = new ObservableCollection<Training>
             {
-                new Training {Name = "Upper 1"},
-                new Training {Name = "Lower 2"},
-                new Training {Name = "Murph 3.0"}
+                new Training
+                {
+                    Name = "Upper 1",
+                    Exercises = new ObservableCollection<Exercise>
+                    {
+                        new Exercise { Name = "Push-ups" },
+                        new Exercise { Name = "Pull-ups" }
+                    }
+                },
+                new Training
+                {
+                    Name = "Lower 2",
+                    Exercises = new ObservableCollection<Exercise>
+                    {
+                        new Exercise { Name = "Squats" },
+                        new Exercise { Name = "Lunges" }
+                    }
+                },
+                new Training
+                {
+                    Name = "Murph 3.0",
+                    Exercises = new ObservableCollection<Exercise>
+                    {
+                        new Exercise { Name = "Running" },
+                        new Exercise { Name = "Push-ups" },
+                        new Exercise { Name = "Pull-ups" },
+                        new Exercise { Name = "Squats" }
+                    }
+                }
             };
 
-            TrainingViewModel = new TrainingViewModel();
+            
         }
 
         private void OnEntrainementSelectionChanged()
         {
+            TrainingViewModel = new TrainingViewModel();
+
             if (SelectedItem != null)
             {
-                TrainingViewModel.Name = SelectedItem.Name;
+                
+                TrainingViewModel.SelectedTraining = SelectedItem;
             }
         }
+
     }
 }
 

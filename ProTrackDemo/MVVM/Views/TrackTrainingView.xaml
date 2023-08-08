@@ -10,6 +10,7 @@
     <UserControl.DataContext>
         <viewmodels:TrackTrainingViewModel/>
     </UserControl.DataContext>
+    
     <StackPanel>
 
 
