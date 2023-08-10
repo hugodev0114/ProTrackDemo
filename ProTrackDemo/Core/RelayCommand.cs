@@ -11,6 +11,7 @@ namespace ProTrackDemo.Core
     {
         private readonly Predicate<object> _canExecute;
         private readonly Action<object> _execute;
+
         public RelayCommand(Predicate<object> canExecute, Action<object> execeute)
         {
             _canExecute = canExecute;

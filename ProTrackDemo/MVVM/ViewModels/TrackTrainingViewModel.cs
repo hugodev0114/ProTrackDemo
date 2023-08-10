@@ -1,5 +1,6 @@
 ﻿using ProTrackDemo.Core;
 using ProTrackDemo.MVVM.Models;
+using ProTrackDemo.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -54,38 +55,8 @@ namespace ProTrackDemo.MVVM.ViewModels
         public TrackTrainingViewModel()
         {
 
-            ComboBoxItems = new ObservableCollection<Training>
-            {
-                new Training
-                {
-                    Name = "Upper 1",
-                    Exercises = new ObservableCollection<Exercise>
-                    {
-                        new Exercise { Name = "Push-ups" },
-                        new Exercise { Name = "Pull-ups" }
-                    }
-                },
-                new Training
-                {
-                    Name = "Lower 2",
-                    Exercises = new ObservableCollection<Exercise>
-                    {
-                        new Exercise { Name = "Squats" },
-                        new Exercise { Name = "Lunges" }
-                    }
-                },
-                new Training
-                {
-                    Name = "Murph 3.0",
-                    Exercises = new ObservableCollection<Exercise>
-                    {
-                        new Exercise { Name = "Running" },
-                        new Exercise { Name = "Push-ups" },
-                        new Exercise { Name = "Pull-ups" },
-                        new Exercise { Name = "Squats" }
-                    }
-                }
-            };
+            ComboBoxItems = TrainingService.GetTrainings();
+            
 
             
         }

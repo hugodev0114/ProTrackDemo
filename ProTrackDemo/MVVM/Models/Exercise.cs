@@ -9,5 +9,10 @@ namespace ProTrackDemo.MVVM.Models
     public class Exercise
     {
         public string Name { get; set; }
+
+        public Exercise(string name)
+        {
+            Name = name;
+        }
     }
 }

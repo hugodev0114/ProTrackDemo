@@ -17,7 +17,7 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Column="0" Text="Nom de l'entraînement : " Margin="3"/>
-            <TextBox Grid.Column="1" Margin="3"/>
+            <TextBox x:Name="trainingName" Text="{Binding TextBoxTrainingName, Mode=TwoWay}" Grid.Column="1" Margin="3"/>
         </Grid>
 
         <Grid Margin="0, 10, 0, 0">
@@ -28,8 +28,8 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Column="0" Text="Exercice :" Margin="3"/>
-            <TextBox Grid.Column="1" Margin="3"/>
+            <TextBlock Grid.Column="0" Text="Exercice 1:" Margin="3"/>
+            <TextBox Grid.Column="1" Margin="3" x:Name="exercise1" Text="{Binding TextBoxEx1, Mode=TwoWay}"/>
             <TextBlock Grid.Column="2" Text="Nombre de Séries :" Margin="3"/>
             <TextBox Grid.Column="3" Margin="3"/>
             
@@ -43,8 +43,8 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Column="0" Text="Exercice :" Margin="3"/>
-            <TextBox Grid.Column="1" Margin="3"/>
+            <TextBlock Grid.Column="0" Text="Exercice 2 :" Margin="3"/>
+            <TextBox Grid.Column="1" Margin="3" x:Name="exercise2" Text="{Binding TextBoxEx2, Mode=TwoWay}"/>
             <TextBlock Grid.Column="2" Text="Nombre de Séries :" Margin="3"/>
             <TextBox Grid.Column="3" Margin="3"/>
 
@@ -58,8 +58,8 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Column="0" Text="Exercice :" Margin="3"/>
-            <TextBox Grid.Column="1" Margin="3"/>
+            <TextBlock Grid.Column="0" Text="Exercice 3 :" Margin="3"/>
+            <TextBox Grid.Column="1" Margin="3" x:Name="exercise3" Text="{Binding TextBoxEx3, Mode=TwoWay}"/>
             <TextBlock Grid.Column="2" Text="Nombre de Séries :" Margin="3"/>
             <TextBox Grid.Column="3" Margin="3"/>
 
@@ -73,8 +73,8 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Column="0" Text="Exercice :" Margin="3"/>
-            <TextBox Grid.Column="1" Margin="3"/>
+            <TextBlock Grid.Column="0" Text="Exercice 4 :" Margin="3" />
+            <TextBox Grid.Column="1" Margin="3" x:Name="exercise4" Text="{Binding TextBoxEx4, Mode=TwoWay}"/>
             <TextBlock Grid.Column="2" Text="Nombre de Séries :" Margin="3"/>
             <TextBox Grid.Column="3" Margin="3"/>
 
@@ -88,8 +88,8 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Column="0" Text="Exercice :" Margin="3"/>
-            <TextBox Grid.Column="1" Margin="3"/>
+            <TextBlock Grid.Column="0" Text="Exercice 5 :" Margin="3"/>
+            <TextBox Grid.Column="1" Margin="3" x:Name="exercise5" Text="{Binding TextBoxEx5, Mode=TwoWay}"/>
             <TextBlock Grid.Column="2" Text="Nombre de Séries :" Margin="3"/>
             <TextBox Grid.Column="3" Margin="3"/>
 
@@ -103,7 +103,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Button Content="Submit" Grid.Column="3"/>
+            <Button Content="Submit" Command="{Binding SubmitCommand}" Grid.Column="3"/>
 
         </Grid>
 

@@ -30,7 +30,7 @@
             <ComboBox Grid.Column="1"
                       ItemsSource="{Binding ComboBoxItems}" 
                       SelectedItem="{Binding SelectedItem}"
-                      DisplayMemberPath="Name">
+                      DisplayMemberPath="TrainingName">
                 
             </ComboBox>
 

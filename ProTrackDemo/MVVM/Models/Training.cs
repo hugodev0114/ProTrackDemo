@@ -9,10 +9,15 @@ namespace ProTrackDemo.MVVM.Models
 {
     public class Training
     {
+        public Training(string trainingName, ObservableCollection<Exercise> exercises)
+        {
+            TrainingName = trainingName;
+            Exercises = exercises;
+        }
+
         public ObservableCollection<Exercise> Exercises { get; set; } = new ObservableCollection<Exercise>();
-        public string Name{ get; set; }
-
-
-       
+        
+        public string TrainingName { get; }
+        
     }
 }
