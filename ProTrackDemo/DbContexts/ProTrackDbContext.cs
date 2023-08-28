@@ -9,10 +9,11 @@ using System.Threading.Tasks;
 
 namespace ProTrackDemo.DbContexts
 {
-    public class ProTrackDbContext : DbContext
+    public class ProTrackDbContextFactory : DbContext
     {
-        public ProTrackDbContext(DbContextOptions options) : base(options)
+        public ProTrackDbContextFactory(DbContextOptions options) : base(options)
         {
+
         }
 
         public DbSet<TrainingDTO> Trainings { get; set; }

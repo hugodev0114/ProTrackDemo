@@ -9,7 +9,7 @@ using ProTrackDemo.DbContexts;
 
 namespace ProTrackDemo.Migrations
 {
-    [DbContext(typeof(ProTrackDbContext))]
+    [DbContext(typeof(ProTrackDbContextFactory))]
     partial class ProTrackDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

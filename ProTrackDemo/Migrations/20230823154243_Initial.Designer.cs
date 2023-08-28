@@ -10,7 +10,7 @@ using ProTrackDemo.DbContexts;
 
 namespace ProTrackDemo.Migrations
 {
-    [DbContext(typeof(ProTrackDbContext))]
+    [DbContext(typeof(ProTrackDbContextFactory))]
     [Migration("20230823154243_Initial")]
     partial class Initial
     {

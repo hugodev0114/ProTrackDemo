@@ -18,6 +18,15 @@ namespace ProTrackDemo.MVVM.Models
         public ObservableCollection<Exercise> Exercises { get; set; } = new ObservableCollection<Exercise>();
         
         public string TrainingName { get; }
+        public Guid TrainingId { get; set; }
+
+        public Training(Guid trainingId, string trainingName)
+        {
+            TrainingName = trainingName;
+            TrainingId = trainingId;
+        }
+
+       
         
     }
 }

@@ -1,6 +1,9 @@
 ﻿using ProTrackDemo.Core;
+using ProTrackDemo.DbContexts;
 using ProTrackDemo.MVVM.Models;
 using ProTrackDemo.Services;
+using ProTrackDemo.Services.DatabaseServices;
+using ProTrackDemo.Services.TrainingCreators;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,6 +15,9 @@ namespace ProTrackDemo.MVVM.ViewModels
 {
     public class TrackTrainingViewModel : ViewModel
     {
+        private readonly ITrainingServiceProvider _trainingServiceProvider;
+        private DbContextFactory _dbContextFactory;
+        private const string CONNECTION_STRING = "Data Source=protrack.db";
 
         private TrainingViewModel _trainingViewModel;
         public TrainingViewModel TrainingViewModel
@@ -54,11 +60,29 @@ namespace ProTrackDemo.MVVM.ViewModels
 
         public TrackTrainingViewModel()
         {
+            _dbContextFactory = new DbContextFactory(CONNECTION_STRING);
+            _trainingServiceProvider = new DatabaseTrainingProvider(_dbContextFactory);
 
-            ComboBoxItems = TrainingService.GetTrainings();
+            ComboBoxItems = new ObservableCollection<Training>();
+
+            LoadTrainings();
+
             
 
-            
+           
+
+            // Combox sera remplie avec le DatabaseServiceProvider
+
+        }
+
+        private async Task LoadTrainings()
+        {
+            IEnumerable<Training> trainingCollection = await _trainingServiceProvider.GetAllTrainings();
+
+            foreach (var training in trainingCollection)
+            {
+                ComboBoxItems.Add(training);
+            }
         }
 
         private void OnEntrainementSelectionChanged()
@@ -69,6 +93,8 @@ namespace ProTrackDemo.MVVM.ViewModels
             {
                 
                 TrainingViewModel.SelectedTraining = SelectedItem;
+
+                
             }
         }
 

@@ -2,8 +2,11 @@
 using Microsoft.Extensions.DependencyInjection;
 using ProTrackDemo.Core;
 using ProTrackDemo.DbContexts;
+using ProTrackDemo.MVVM.Models;
 using ProTrackDemo.MVVM.ViewModels;
 using ProTrackDemo.Services;
+using ProTrackDemo.Services.DatabaseServices;
+using ProTrackDemo.Services.TrainingCreators;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -21,8 +24,17 @@ namespace ProTrackDemo
     {
         private readonly ServiceProvider _serviceProvider;
         private const string CONNECTION_STRING = "Data Source=protrack.db";
+        private readonly ProTrackMgr _proTrackMgr;
+        private readonly DbContextFactory _proTrackDbContextFactory;
         public App()
         {
+
+            _proTrackDbContextFactory = new DbContextFactory(CONNECTION_STRING);
+            ITrainingCreator trainingCreator = new DatabaseTrainingCreator(_proTrackDbContextFactory);
+            ITrainingServiceProvider trainingProvider = new DatabaseTrainingProvider(_proTrackDbContextFactory);
+
+            _proTrackMgr = new ProTrackMgr(trainingCreator, trainingProvider);
+
             IServiceCollection services = new ServiceCollection();
 
             services.AddSingleton<MainWindow>(provider => new MainWindow
@@ -30,6 +42,7 @@ namespace ProTrackDemo
                 DataContext = provider.GetRequiredService<MainViewModel>()
 
             });
+
 
             services.AddSingleton<MainViewModel>();
             services.AddSingleton<HomeViewModel>();
@@ -45,14 +58,20 @@ namespace ProTrackDemo
         protected override void OnStartup(StartupEventArgs e)
         {
             DbContextOptions options = new DbContextOptionsBuilder().UseSqlite(CONNECTION_STRING).Options;
-            ProTrackDbContext dbContext = new ProTrackDbContext(options);
-
-            dbContext.Database.Migrate();
+            using (ProTrackDbContextFactory dbContext = new ProTrackDbContextFactory(options))
+            {
+                dbContext.Database.Migrate();
+            }
 
             var mainWindow = _serviceProvider.GetRequiredService<MainWindow>();
 
             mainWindow.Show();
             base.OnStartup(e);
+        }
+
+        public ProTrackMgr GetProTrackMgr() 
+        {
+            return _proTrackMgr; 
         }
     }
 }

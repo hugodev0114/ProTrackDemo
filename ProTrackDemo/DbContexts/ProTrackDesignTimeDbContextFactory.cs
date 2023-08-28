@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace ProTrackDemo.DbContexts
 {
-    public class ProTrackDesignTimeDbContextFactory : IDesignTimeDbContextFactory<ProTrackDbContext>
+    public class ProTrackDesignTimeDbContextFactory : IDesignTimeDbContextFactory<ProTrackDbContextFactory>
     {
-        public ProTrackDbContext CreateDbContext(string[] args)
+        public ProTrackDbContextFactory CreateDbContext(string[] args)
         {
             DbContextOptions options = new DbContextOptionsBuilder().UseSqlite("Data Source=protrack.db").Options;
 
-            return new ProTrackDbContext(options);
+            return new ProTrackDbContextFactory(options);
         }
     }
 }

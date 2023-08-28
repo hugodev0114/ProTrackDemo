@@ -8,14 +8,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
-
+using ProTrackDemo.Services.TrainingCreators;
+using ProTrackDemo.DbContexts;
+using System.DirectoryServices.ActiveDirectory;
 
 namespace ProTrackDemo.MVVM.ViewModels
 {
     public class RegisterTrainingViewModel : ViewModel
     {
+        private readonly ITrainingCreator _trainingCreator;
+        private DbContextFactory _dbContextFactory;
+
+        private Guid _trainingId = Guid.NewGuid();
 
         private string _textBoxTrainingName;
+
+        private const string CONNECTION_STRING = "Data Source=protrack.db";
         public string TextBoxTrainingName
         {
             get 
@@ -86,6 +94,8 @@ namespace ProTrackDemo.MVVM.ViewModels
         }
 
         private string _textBoxEx5;
+       
+
         public string TextBoxEx5
         {
             get
@@ -102,7 +112,10 @@ namespace ProTrackDemo.MVVM.ViewModels
 
         public RegisterTrainingViewModel()
         {
+            _dbContextFactory = new DbContextFactory(CONNECTION_STRING);
+            _trainingCreator = new DatabaseTrainingCreator(_dbContextFactory);
             SubmitCommand = new RelayCommand(_ => { return true; }, parameter => { Submit(); });
+            
         }
 
         private void Submit()
@@ -114,6 +127,11 @@ namespace ProTrackDemo.MVVM.ViewModels
             exercises.Add(new Exercise(TextBoxEx4));
             exercises.Add(new Exercise(TextBoxEx5));
             TrainingService.CreateTraining(TextBoxTrainingName, exercises);
+
+            // Utiliser ITrainingCreator pour créer un Training et ajouter dans la base.
+
+            _trainingCreator.CreateTraining(new Training(_trainingId, TextBoxTrainingName));
+            
         }
     }
 }
