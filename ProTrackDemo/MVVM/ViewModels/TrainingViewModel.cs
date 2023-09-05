@@ -20,7 +20,7 @@ namespace ProTrackDemo.MVVM.ViewModels
             {
                 _selectedTraining = value;
                 OnPropertyChanged(nameof(SelectedTraining));
-            }
+            }   
         }
 
 

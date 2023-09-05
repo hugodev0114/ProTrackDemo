@@ -21,17 +21,29 @@ namespace ProTrackDemo.Services.DatabaseServices
 
         public async Task<IEnumerable<Training>> GetAllTrainings()
         {
+
             using (ProTrackDbContextFactory context = _dbContextFactory.CreateDbContext())
             {
-                IEnumerable<TrainingDTO> trainingDTOs = await context.Trainings.ToListAsync();
+                var trainingDTOs = await context.Trainings
+                    .Include(t => t.Exercises) // Inclure les exercices associés au training
+                    .ToListAsync();
 
-                return  trainingDTOs.Select(x => ToTraining(x));
+                return trainingDTOs.Select(dto => ToTraining(dto));
             }
         }
 
         private static Training ToTraining(TrainingDTO trainingDTO)
         {
-            return new Training(trainingDTO.Id, trainingDTO.Name);
+
+            var training = new Training(trainingDTO.Id, trainingDTO.Name);
+
+            foreach (var exerciseDTO in trainingDTO.Exercises)
+            {
+                var exercise = new Exercise(exerciseDTO.ExerciseId, exerciseDTO.Name);
+                training.Exercises.Add(exercise);
+            }
+
+            return training;
         }
     }
 }

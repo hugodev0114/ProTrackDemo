@@ -120,17 +120,19 @@ namespace ProTrackDemo.MVVM.ViewModels
 
         private void Submit()
         {
+            
             ObservableCollection<Exercise> exercises = new ObservableCollection<Exercise>();
             exercises.Add(new Exercise(TextBoxEx1));
             exercises.Add(new Exercise(TextBoxEx2));
             exercises.Add(new Exercise(TextBoxEx3));
             exercises.Add(new Exercise(TextBoxEx4));
             exercises.Add(new Exercise(TextBoxEx5));
-            TrainingService.CreateTraining(TextBoxTrainingName, exercises);
+            //TrainingService.CreateTraining(TextBoxTrainingName, exercises);
+            
 
             // Utiliser ITrainingCreator pour créer un Training et ajouter dans la base.
 
-            _trainingCreator.CreateTraining(new Training(_trainingId, TextBoxTrainingName));
+            _trainingCreator.CreateTraining(new Training(_trainingId, TextBoxTrainingName, exercises));
             
         }
     }

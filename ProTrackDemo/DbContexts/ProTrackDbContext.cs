@@ -11,11 +11,22 @@ namespace ProTrackDemo.DbContexts
 {
     public class ProTrackDbContextFactory : DbContext
     {
+
+        public DbSet<TrainingDTO> Trainings { get; set; }
+        public DbSet<ExerciseDTO> Exercises { get; set; }
+
         public ProTrackDbContextFactory(DbContextOptions options) : base(options)
         {
 
         }
 
-        public DbSet<TrainingDTO> Trainings { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Training>()
+                .HasMany(t => t.Exercises)
+                .WithOne(e => e.Training)
+                .HasForeignKey(e => e.TrainingId);
+        }
+
     }
 }

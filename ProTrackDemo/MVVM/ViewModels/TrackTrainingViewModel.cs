@@ -67,10 +67,6 @@ namespace ProTrackDemo.MVVM.ViewModels
 
             LoadTrainings();
 
-            
-
-           
-
             // Combox sera remplie avec le DatabaseServiceProvider
 
         }
@@ -90,11 +86,8 @@ namespace ProTrackDemo.MVVM.ViewModels
             TrainingViewModel = new TrainingViewModel();
 
             if (SelectedItem != null)
-            {
-                
+            {                
                 TrainingViewModel.SelectedTraining = SelectedItem;
-
-                
             }
         }
 
