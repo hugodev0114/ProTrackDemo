@@ -73,7 +73,7 @@ namespace ProTrackDemo.MVVM.ViewModels
 
         private async Task LoadTrainings()
         {
-            IEnumerable<Training> trainingCollection = await _trainingServiceProvider.GetAllTrainings();
+            IEnumerable<Training> trainingCollection = await _trainingServiceProvider.GetAllTrainingsWithExercises();
 
             foreach (var training in trainingCollection)
             {

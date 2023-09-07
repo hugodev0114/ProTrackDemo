@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,34 +11,22 @@ namespace ProTrackDemo.MVVM.Models
 {
     public class Training
     {
-        public Training(string trainingName, ObservableCollection<Exercise> exercises)
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Guid Id { get; set; }
+        public string Nom { get; set; } // Propriété pour le nom du training.
+        public virtual List<Exercise> Exercises { get; } = new List<Exercise>(); // Liste d'exercices associée à ce training.
+
+        public Training()
         {
-            TrainingName = trainingName;
+            
+        }
+
+        public Training(string nom, List<Exercise> exercises)
+        {
+            Id = Guid.NewGuid(); // Générer un GUID unique lors de la création de l'objet.
+            Nom = nom;
             Exercises = exercises;
-        }
-        public Training() 
-        {
-
-        }
-        public ObservableCollection<Exercise> Exercises { get; set; } = new ObservableCollection<Exercise>();
-        
-        public string TrainingName { get; set; }
-        public Guid TrainingId { get; set; }
-        public Guid Id { get; }
-        public string Name { get; }
-
-        public Training(Guid trainingId, string trainingName, ObservableCollection<Exercise> exercises)
-        {
-            TrainingName = trainingName;
-            TrainingId = trainingId;
-            Exercises = exercises;
-            TrainingId = Guid.NewGuid();
-        }
-
-        public Training(Guid id, string name)
-        {
-            Id = id;
-            Name = name;
         }
     }
 }

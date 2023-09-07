@@ -19,7 +19,7 @@ namespace ProTrackDemo.MVVM.ViewModels
         private readonly ITrainingCreator _trainingCreator;
         private DbContextFactory _dbContextFactory;
 
-        private Guid _trainingId = Guid.NewGuid();
+        
 
         private string _textBoxTrainingName;
 
@@ -121,18 +121,18 @@ namespace ProTrackDemo.MVVM.ViewModels
         private void Submit()
         {
             
-            ObservableCollection<Exercise> exercises = new ObservableCollection<Exercise>();
+            List<Exercise> exercises = new List<Exercise>();
+
             exercises.Add(new Exercise(TextBoxEx1));
             exercises.Add(new Exercise(TextBoxEx2));
             exercises.Add(new Exercise(TextBoxEx3));
             exercises.Add(new Exercise(TextBoxEx4));
             exercises.Add(new Exercise(TextBoxEx5));
-            //TrainingService.CreateTraining(TextBoxTrainingName, exercises);
+
+            Training training = new Training(_textBoxTrainingName, exercises);
             
 
-            // Utiliser ITrainingCreator pour créer un Training et ajouter dans la base.
-
-            _trainingCreator.CreateTraining(new Training(_trainingId, TextBoxTrainingName, exercises));
+            _trainingCreator.CreateTraining(training);
             
         }
     }

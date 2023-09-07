@@ -9,6 +9,6 @@ namespace ProTrackDemo.Services.DatabaseServices
 {
     public interface ITrainingServiceProvider
     {
-        Task<IEnumerable<Training>> GetAllTrainings();
+        Task<IEnumerable<Training>> GetAllTrainingsWithExercises();
     }
 }

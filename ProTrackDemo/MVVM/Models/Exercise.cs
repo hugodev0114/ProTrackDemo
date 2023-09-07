@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,24 +10,23 @@ namespace ProTrackDemo.MVVM.Models
 {
     public class Exercise
     {
-        private string textBoxEx5;
+        
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Guid Id { get; set; } 
 
-        public Guid Id{ get; set; }
-        public string Name { get; set; }
+        [Required]
+        public string Nom { get; set; } 
+
         public Guid TrainingId { get; set; } 
-        public Training Training { get; set; }
-        public object ExerciseId { get; }
 
-        public Exercise(string name)
+        [ForeignKey("TrainingId")]
+        public virtual Training Training { get; set; } 
+
+        public Exercise(string nom)
         {
-            Name = name;
             Id = Guid.NewGuid();
-        }
-
-        public Exercise(object exerciseId, string name)
-        {
-            ExerciseId = exerciseId;
-            Name = name;
+            Nom = nom;
         }
     }
 }

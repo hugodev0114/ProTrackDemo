@@ -14,7 +14,7 @@ namespace ProTrackDemo.Services
         private static ObservableCollection<Training> _trainings = new ObservableCollection<Training>();
 
         
-
+        /*
         public static void CreateTraining(string trainingName, ObservableCollection<Exercise> exercises)
         {
             Training training = new Training(trainingName, exercises);
@@ -27,6 +27,7 @@ namespace ProTrackDemo.Services
         {
             return _trainings;
         }
+        */
 
 
     }

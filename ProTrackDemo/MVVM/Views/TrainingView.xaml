@@ -20,7 +20,7 @@
         <ListBox Grid.Row="2" Margin="3" ItemsSource="{Binding SelectedTraining.Exercises}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Foreground="Black" Text="{Binding Name}" />
+                    <TextBlock Foreground="Black" Text="{Binding Nom}" />
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

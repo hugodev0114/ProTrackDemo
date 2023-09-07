@@ -11,7 +11,7 @@ namespace ProTrackDemo.DTOs
 {
     public class TrainingDTO
     {
-        [Key]
+        
         public Guid Id { get; set; }
         public string Name { get; set; }
         public ObservableCollection<Exercise> Exercises { get; set; }

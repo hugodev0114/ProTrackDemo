@@ -11,8 +11,8 @@ using ProTrackDemo.DbContexts;
 namespace ProTrackDemo.Migrations
 {
     [DbContext(typeof(ProTrackDbContextFactory))]
-    [Migration("20230904170653_AddExercises")]
-    partial class AddExercises
+    [Migration("20230907153155_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,31 +20,33 @@ namespace ProTrackDemo.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.10");
 
-            modelBuilder.Entity("ProTrackDemo.DTOs.ExerciseDTO", b =>
+            modelBuilder.Entity("ProTrackDemo.MVVM.Models.Exercise", b =>
                 {
-                    b.Property<Guid>("ExerciseId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Nom")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<Guid>("TrainingId")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("ExerciseId");
+                    b.HasKey("Id");
+
+                    b.HasIndex("TrainingId");
 
                     b.ToTable("Exercises");
                 });
 
-            modelBuilder.Entity("ProTrackDemo.DTOs.TrainingDTO", b =>
+            modelBuilder.Entity("ProTrackDemo.MVVM.Models.Training", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Nom")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -55,50 +57,6 @@ namespace ProTrackDemo.Migrations
 
             modelBuilder.Entity("ProTrackDemo.MVVM.Models.Exercise", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid?>("TrainingDTOId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid>("TrainingId")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TrainingDTOId");
-
-                    b.HasIndex("TrainingId");
-
-                    b.ToTable("Exercise");
-                });
-
-            modelBuilder.Entity("ProTrackDemo.MVVM.Models.Training", b =>
-                {
-                    b.Property<Guid>("TrainingId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("TrainingName")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("TrainingId");
-
-                    b.ToTable("Training");
-                });
-
-            modelBuilder.Entity("ProTrackDemo.MVVM.Models.Exercise", b =>
-                {
-                    b.HasOne("ProTrackDemo.DTOs.TrainingDTO", null)
-                        .WithMany("Exercises")
-                        .HasForeignKey("TrainingDTOId");
-
                     b.HasOne("ProTrackDemo.MVVM.Models.Training", "Training")
                         .WithMany("Exercises")
                         .HasForeignKey("TrainingId")
@@ -106,11 +64,6 @@ namespace ProTrackDemo.Migrations
                         .IsRequired();
 
                     b.Navigation("Training");
-                });
-
-            modelBuilder.Entity("ProTrackDemo.DTOs.TrainingDTO", b =>
-                {
-                    b.Navigation("Exercises");
                 });
 
             modelBuilder.Entity("ProTrackDemo.MVVM.Models.Training", b =>
