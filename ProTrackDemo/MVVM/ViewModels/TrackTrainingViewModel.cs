@@ -16,10 +16,13 @@ namespace ProTrackDemo.MVVM.ViewModels
     public class TrackTrainingViewModel : ViewModel
     {
         private readonly ITrainingServiceProvider _trainingServiceProvider;
+        private readonly ITrainingCreator _trainingServiceCreator;
         private DbContextFactory _dbContextFactory;
         private const string CONNECTION_STRING = "Data Source=protrack.db";
 
         private TrainingViewModel _trainingViewModel;
+
+        public RelayCommand DeleteTrainingCommand { get; set; }
         public TrainingViewModel TrainingViewModel
         {
             get => _trainingViewModel;
@@ -60,10 +63,15 @@ namespace ProTrackDemo.MVVM.ViewModels
 
         public TrackTrainingViewModel()
         {
+
+            DeleteTrainingCommand = new RelayCommand(_ => { return true; }, parameter => { DeleteTraining(); });
+
             _dbContextFactory = new DbContextFactory(CONNECTION_STRING);
             _trainingServiceProvider = new DatabaseTrainingProvider(_dbContextFactory);
-
+            _trainingServiceCreator = new DatabaseTrainingCreator(_dbContextFactory);
             ComboBoxItems = new ObservableCollection<Training>();
+
+
 
             LoadTrainings();
 
@@ -78,6 +86,16 @@ namespace ProTrackDemo.MVVM.ViewModels
             foreach (var training in trainingCollection)
             {
                 ComboBoxItems.Add(training);
+            }
+        }
+
+        private async void DeleteTraining()
+        {
+            if (SelectedItem != null)
+            {
+                await _trainingServiceCreator.DeleteTraining(SelectedItem.Id);
+
+                ComboBoxItems.Remove(SelectedItem);
             }
         }
 

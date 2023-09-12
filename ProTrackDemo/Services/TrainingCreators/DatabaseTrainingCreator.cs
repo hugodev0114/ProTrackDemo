@@ -18,6 +18,7 @@ namespace ProTrackDemo.Services.TrainingCreators
         {
             _dbContextFactory = dbContextFactory;
         }
+
         public async Task CreateTraining(Training training)
         {
             using (ProTrackDbContextFactory context = _dbContextFactory.CreateDbContext())
@@ -36,6 +37,22 @@ namespace ProTrackDemo.Services.TrainingCreators
                 context.Trainings.Add(training);
                 context.SaveChanges();
 
+            }
+        }
+
+        public async Task DeleteTraining(Guid trainingId)
+        {
+            using (ProTrackDbContextFactory context = _dbContextFactory.CreateDbContext())
+            {
+                // Recherchez le training à supprimer par son ID
+                var trainingToRemove = await context.Trainings.FindAsync(trainingId);
+
+                if (trainingToRemove != null)
+                {
+                    // Supprimez le training de la base de données
+                    context.Trainings.Remove(trainingToRemove);
+                    await context.SaveChangesAsync();
+                }
             }
         }
 

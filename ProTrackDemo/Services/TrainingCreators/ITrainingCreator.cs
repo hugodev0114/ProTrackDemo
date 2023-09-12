@@ -10,5 +10,7 @@ namespace ProTrackDemo.Services.TrainingCreators
     public interface ITrainingCreator
     {
         Task CreateTraining(Training training);
+
+        Task DeleteTraining(Guid trainingId);
     }
 }
